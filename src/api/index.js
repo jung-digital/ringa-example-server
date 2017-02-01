@@ -1,6 +1,11 @@
 import { Router } from 'express'
+import list from './list'
+import item from './item'
 
 const router = new Router()
+
+router.use('/list', list)
+router.use('/items', item)
 
 /**
  * @apiDefine master Master access only
