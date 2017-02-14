@@ -6,6 +6,9 @@ const itemSchema = new Schema({
   },
   description: {
     type: String
+  },
+  order: {
+    type: Number
   }
 }, {
   timestamps: true
@@ -29,7 +32,14 @@ itemSchema.methods = {
   }
 }
 
-const model = mongoose.model('Item', itemSchema)
+itemSchema.query.findByIds = function(ids) {
+  return this.find({
+    '_id': {
+      $in: result.items
+    }
+  });
+};
 
+const model = mongoose.model('Item', itemSchema)
 export const schema = model.schema
 export default model

@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose'
-import {schema as ItemSchema} from '../item/model';
 
 const listSchema = new Schema({
   title: {
@@ -8,7 +7,10 @@ const listSchema = new Schema({
   description: {
     type: String
   },
-  items: [ItemSchema]
+  order: {
+    type: Number
+  },
+  items: [{type: Schema.Types.ObjectId}]
 }, {
   timestamps: true
 })
@@ -21,6 +23,7 @@ listSchema.methods = {
       title: this.title,
       description: this.description,
       items: this.items,
+      order: this.order,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

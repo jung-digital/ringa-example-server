@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, forList, update, destroy } from './controller'
 import { schema } from './model'
 export Item, { schema } from './model'
 
@@ -35,7 +35,7 @@ router.get('/',
   index)
 
 /**
- * @api {get} /items/:id Retrieve item
+ * @api {get} /items/:id Retrieve items by ids
  * @apiName RetrieveItem
  * @apiGroup Item
  * @apiSuccess {Object} item Item's data.
@@ -44,6 +44,17 @@ router.get('/',
  */
 router.get('/:id',
   show)
+
+/**
+ * @api {post} /items/many Retrieve items by ids
+ * @apiName RetrieveItem
+ * @apiGroup Item
+ * @apiSuccess {Object} item Item's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Item not found.
+ */
+router.get('/list/:listId',
+  forList)
 
 /**
  * @api {put} /items/:id Update item

@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import { success, notFound } from '../../services/response/'
 import { List } from '.'
+import { Item } from '../item'
+import mongoose from 'mongoose';
 
 export const create = ({ bodymen: { body } }, res, next) =>
   List.create(body)
@@ -24,7 +26,13 @@ export const show = ({ params }, res, next) =>
 export const update = ({ bodymen: { body }, params }, res, next) =>
   List.findById(params.id)
     .then(notFound(res))
-    .then((list) => list ? _.merge(list, body).save() : null)
+    .then((list) => {
+      body.items = body.items ? body.items.map(item => {
+        return typeof item === 'string' ? mongoose.mongo.ObjectId(item) : item;
+      }) : [];
+
+      return list ? _.merge(list, body).save() : null
+    })
     .then((list) => list ? list.view(true) : null)
     .then(success(res))
     .catch(next)

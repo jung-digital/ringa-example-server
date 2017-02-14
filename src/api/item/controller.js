@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { success, notFound } from '../../services/response/'
 import { Item } from '.'
+import { List } from '../list'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Item.create(body)
@@ -16,6 +17,15 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 
 export const show = ({ params }, res, next) =>
   Item.findById(params.id)
+    .then(notFound(res))
+    .then((item) => item ? item.view() : null)
+    .then(success(res))
+    .catch(next)
+
+export const forList = ({params, bodymen: { body } }, res, next) =>
+  List.findById(params.listId)
+    .then(result => Item.findByIds(result.items))
+    .then(items => items.map((item) => item.view()))
     .then(notFound(res))
     .then((item) => item ? item.view() : null)
     .then(success(res))

@@ -6,7 +6,7 @@ import { schema } from './model'
 export List, { schema } from './model'
 
 const router = new Router()
-const { title, description } = schema.tree
+const { title, description, order, items } = schema.tree
 
 /**
  * @api {post} /list Create list
@@ -19,7 +19,7 @@ const { title, description } = schema.tree
  * @apiError 404 List not found.
  */
 router.post('/',
-  body({ title, description }),
+  body({ title, description, order, items }),
   create)
 
 /**
@@ -56,7 +56,7 @@ router.get('/:id',
  * @apiError 404 List not found.
  */
 router.put('/:id',
-  body({ title, description }),
+  body({ title, description, order, items }),
   update)
 
 /**
