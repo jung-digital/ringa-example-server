@@ -35,14 +35,14 @@ router.get('/',
   index)
 
 /**
- * @api {get} /items/:id Retrieve items by ids
+ * @api {get} /items/:ids Retrieve items by ids, command-separated
  * @apiName RetrieveItem
  * @apiGroup Item
  * @apiSuccess {Object} item Item's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Item not found.
  */
-router.get('/:id',
+router.get('/:ids',
   show)
 
 /**

@@ -16,9 +16,9 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     .catch(next)
 
 export const show = ({ params }, res, next) =>
-  Item.findById(params.id)
+  Item.findByIds(params.ids.split(','))
     .then(notFound(res))
-    .then((item) => item ? item.view() : null)
+    .then((items) => items ? items.map(item => item.view()) : null)
     .then(success(res))
     .catch(next)
 

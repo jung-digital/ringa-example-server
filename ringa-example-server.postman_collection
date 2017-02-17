@@ -1,0 +1,250 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Ringa Server (localhost:9000)",
+		"_postman_id": "0af93878-3d35-2f36-2bb2-0ef8dfbeec9d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET list",
+			"request": {
+				"url": "http://localhost:9000/list",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get all Lists"
+			},
+			"response": []
+		},
+		{
+			"name": "GET list :id",
+			"request": {
+				"url": "http://localhost:9000/list",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get a list"
+			},
+			"response": []
+		},
+		{
+			"name": "POST list",
+			"request": {
+				"url": "http://localhost:9000/list",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"[Test Title]\",\n\t\"description\": \"[Test Description]\"\n}"
+				},
+				"description": "Save a new list"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT list",
+			"request": {
+				"url": {
+					"raw": "http://localhost:9000/list/:id",
+					"protocol": "http",
+					"auth": {},
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"list",
+						":id"
+					],
+					"variable": [
+						{
+							"value": "58a22bcc8b03ab2f84855a62",
+							"id": "id"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"title\": \"[Test Title 5]\",\n\"description\": \"[Test Description bah]\",\n\"order\": 3,\n\"items\": [\"588a8284486c7242d5072d14\"]\n}"
+				},
+				"description": "Update an old list"
+			},
+			"response": []
+		},
+		{
+			"name": "GET items",
+			"request": {
+				"url": "http://localhost:9000/items",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get all items"
+			},
+			"response": []
+		},
+		{
+			"name": "GET items :id",
+			"request": {
+				"url": {
+					"raw": "http://localhost:9000/items/:ids",
+					"protocol": "http",
+					"auth": {},
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"items",
+						":ids"
+					],
+					"variable": [
+						{
+							"value": "58a3775e7ea40b327644d4ad,58a37acdb05b443b6c41fc3c",
+							"id": "ids"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get an item"
+			},
+			"response": []
+		},
+		{
+			"name": "POST item",
+			"request": {
+				"url": "http://localhost:9000/items",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"[Test Item Title]\",\n\t\"description\": \"[Test Item Description]\"\n}"
+				},
+				"description": "Save a new item"
+			},
+			"response": []
+		},
+		{
+			"name": "GET items :listId",
+			"request": {
+				"url": {
+					"raw": "http://localhost:9000/items/:id",
+					"protocol": "http",
+					"auth": {},
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"items",
+						":id"
+					],
+					"variable": [
+						{
+							"value": "588a7f13486c7242d5072d06",
+							"id": "id"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get an item"
+			},
+			"response": []
+		}
+	]
+}

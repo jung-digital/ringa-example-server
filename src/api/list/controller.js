@@ -27,9 +27,14 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
   List.findById(params.id)
     .then(notFound(res))
     .then((list) => {
-      body.items = body.items ? body.items.map(item => {
-        return typeof item === 'string' ? mongoose.mongo.ObjectId(item) : item;
-      }) : [];
+      list.items = body.items;
+      list.items && list.items.forEach((item, ix) => {
+        if (typeof item === 'string') {
+          body.items.set(ix, mongoose.mongo.ObjectId(item));
+        }
+      });
+
+      console.log('Saving', body.items);
 
       return list ? _.merge(list, body).save() : null
     })

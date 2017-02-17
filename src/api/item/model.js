@@ -32,14 +32,15 @@ itemSchema.methods = {
   }
 }
 
-itemSchema.query.findByIds = function(ids) {
+const model = mongoose.model('Item', itemSchema)
+
+model.findByIds = function(ids) {
   return this.find({
     '_id': {
-      $in: result.items
+      $in: ids.map((id) => {console.log(`'${id}'`); return mongoose.mongo.ObjectId(id);})
     }
   });
 };
 
-const model = mongoose.model('Item', itemSchema)
 export const schema = model.schema
 export default model
