@@ -44,7 +44,7 @@ const config = {
   },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/ringa-example-server-dev',
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/ringa-example-server-dev',
       options: {
         debug: true
       }
