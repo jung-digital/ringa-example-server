@@ -1,12 +1,12 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy } from './controller'
+import { create, byToken, show, update, destroy } from './controller'
 import { schema } from './model'
 export List, { schema } from './model'
 
 const router = new Router()
-const { title, description, order, items } = schema.tree
+const { title, description, order, items, token } = schema.tree
 
 /**
  * @api {post} /list Create list
@@ -19,7 +19,7 @@ const { title, description, order, items } = schema.tree
  * @apiError 404 List not found.
  */
 router.post('/',
-  body({ title, description, order, items }),
+  body({ title, description, order, items, token }),
   create)
 
 /**
@@ -30,9 +30,8 @@ router.post('/',
  * @apiSuccess {Object[]} lists List of lists.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.get('/',
-  query(),
-  index)
+router.get('/token/:token',
+  byToken)
 
 /**
  * @api {get} /list/:id Retrieve list
@@ -56,7 +55,7 @@ router.get('/:id',
  * @apiError 404 List not found.
  */
 router.put('/:id',
-  body({ title, description, order, items }),
+  body({ title, description, order, items, token }),
   update)
 
 /**

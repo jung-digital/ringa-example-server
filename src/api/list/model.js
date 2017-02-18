@@ -1,6 +1,9 @@
 import mongoose, { Schema } from 'mongoose'
 
 const listSchema = new Schema({
+  token: {
+    type: String
+  },
   title: {
     type: String
   },
@@ -20,6 +23,7 @@ listSchema.methods = {
     const view = {
       // simple view
       id: this.id,
+      token: this.token,
       title: this.title,
       description: this.description,
       items: this.items,

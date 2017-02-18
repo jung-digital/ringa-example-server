@@ -10,8 +10,8 @@ export const create = ({ bodymen: { body } }, res, next) =>
     .then(success(res, 201))
     .catch(next)
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  List.find(query, select, cursor)
+export const byToken = ({ params: { token } }, res, next) =>
+  List.find({'token': {$eq: token}})
     .then((lists) => lists.map((list) => list.view()))
     .then(success(res))
     .catch(next)
